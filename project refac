@@ -1,0 +1,106 @@
+from Tkinter import*
+from PIL import Image, ImageTk
+
+class Train:
+    def __init__(self):
+        self.world = Tk()
+        self.world.geometry("800x600")
+        self.world.title("Train navigator")
+
+        self.main = Canvas(self.world, width = 800, height = 600)
+        self.main.pack()
+        
+        self.mainphoto = ImageTk.PhotoImage(Image.open("Image/Train.jpg"))
+        self.mainimpage = self.main.create_image(400,300, image = self.mainphoto)
+
+        self.click = Button(self.main, text = "Next", command = self.nextt)
+        self.click.place(x = 650, y = 550)
+        
+        self.world.mainloop()
+
+    def nextt(self):
+    #------ button ------
+        self.click.destroy()
+        
+        self.mainmenu = ImageTk.PhotoImage(Image.open("Image/menu.jpg"))
+        self.mainimpage = self.main.create_image(400,300, image = self.mainmenu)
+
+        
+        self.btsButtonphoto = ImageTk.PhotoImage(Image.open("Image/bts b.jpg"))
+        self.mrtButtonphoto = ImageTk.PhotoImage(Image.open("Image/mrt b.jpg"))
+        self.airButtonphoto = ImageTk.PhotoImage(Image.open("Image/air b.jpg"))
+
+        self.btsButtonimage = self.main.create_image(80, 50, image = self.btsButtonphoto, tag = "btsB")
+        self.mrtButtonimage = self.main.create_image(450,50, image = self.mrtButtonphoto, tag = "mrtB")
+        self.airButtonimage = self.main.create_image(700,50, image = self.airButtonphoto, tag = "airB")
+
+    #IMAGE TRAIN -------------
+
+        self.imagebtsphoto = ImageTk.PhotoImage(Image.open("Train/bts train.jpg"))
+        self.imagemrtphoto = ImageTk.PhotoImage(Image.open("Train/mrt train.jpg"))
+        self.imageairphoto = ImageTk.PhotoImage(Image.open("Train/air train.jpg"))
+
+        self.imagebtsimage = self.main.create_image(150, 400, image = self.imagebtsphoto)
+        self.imagemrtimage = self.main.create_image(650,400, image = self.imagemrtphoto)
+        self.imageairimage = self.main.create_image(400,400, image = self.imageairphoto)
+ 
+
+        self.main.bind("<Button>",self.state)
+        
+
+    def state(self,event):
+        overlap = self.main.find_overlapping(event.x,event.y,event.x,event.y)
+        if len(overlap) > 0:
+            if self.btsButtonimage in overlap:
+                self.bts()
+            elif self.mrtButtonimage in overlap:
+                self.mrt()
+            elif self.airButtonimage in overlap:
+                self.air()
+
+##            if self.point1 in overlap:
+##                self.point1 = self.main.create_oval(10,10,20,20, fill = "red")
+##                    
+##            if self.point2 in overlap:
+##                self.point2 = self.main.create_oval(10,20,20,30, fill = "red")
+##
+##            if self.point3 in overlap:
+##                self.point3 = self.main.create_oval(10,30,20,40, fill = "red")
+##
+                
+                
+ 
+ 
+    def bts(self):
+        self.photoBTS = ImageTk.PhotoImage(Image.open("Image/BTS.jpg"))
+        self.photoimpage = self.main.create_image(400,300, image = self.photoBTS, tag = "bts")
+
+        self.main.tag_lower("btsB")
+        self.main.tag_raise("mrtB")
+        self.main.tag_raise("airB")
+        
+##        self.point1 = self.main.create_oval(10,10,20,20, fill = "white")
+##        self.point2 = self.main.create_oval(10,20,20,30, fill = "white")
+##        self.point3 = self.main.create_oval(10,30,20,40, fill = "white")
+        
+        
+
+    def mrt(self):
+        self.photoMRT = ImageTk.PhotoImage(Image.open("Image/Mrt.jpg"))
+        self.photoimpage = self.main.create_image(400,300, image = self.photoMRT, tag = "mrt")
+        self.main.tag_raise("btsB")
+        self.main.tag_lower("mrtB")
+        self.main.tag_raise("airB")
+
+
+    def air(self):
+        self.photoAIR = ImageTk.PhotoImage(Image.open("Image/Air.jpg"))
+        self.photoimpage = self.main.create_image(400,300, image = self.photoAIR, tag = "air")
+
+        self.main.tag_raise("btsB")
+        self.main.tag_raise("mrtB")
+        self.main.tag_lower("airB")
+
+        
+
+Train()

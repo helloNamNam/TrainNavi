@@ -1,0 +1,29 @@
+bts = {0:15, 1:15, 2:25, 3:28, 4:31, 5:34, 6:37, 7:42, 8:42, 9:42, 10:42, \
+       11:42, 12:42, 13:42, 14:42, 15:42, 16:42, 17:52}
+mrt = {0:16, 1:16, 2:18, 3:20, 4:22, 5:25, 6:27, 7:29, 8:31, 9:34, 10:36, \
+       11:38, 12:40}
+arl = {0:15, 1:15, 2:20, 3:25, 4:30, 5:35, 6:40, 7:45}
+
+def bts_money(first, second):
+    result = abs(first - second)
+    if result >= 17:
+        return bts[17]
+    return bts[result]
+
+def mrt_money(first, second):
+    result = abs(first - second)
+    if result >= 12:
+        return mrt[12]
+    return mrt[result]
+
+def airlink_money(first, second):
+    result = abs(first - second)
+    return airlink[result]
+
+mrt_stationlist = ['Hua Lamphong', 'Sam Yan', 'Si Lom', 'Lumphini', 'Khlong Toei', \
+       'Queen Sirikit National Conv Center', 'Phetchburi', 'Phra Ram 9', 'Thailand Cultural Centre', \
+       'Huai Khwang', 'Sutthisan', 'Ratchadaphisek', 'Lat Phrao', 'Phahon Yothin', 'Chatuchak Park', \
+       'Kamphaeng Phet', 'Bang Sue']
+
+arl_stationlist = ['Suvarnabhumi', 'Lat Krabang', 'Ban Thap Chang', 'Hua Mak', 'Ramkhamhaeng', 'Makkasan', \
+         'Ratchaprarop', 'Phaya Thai']

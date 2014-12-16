@@ -1,0 +1,15 @@
+def start():
+    train_s = ['Bangwa','Wutthakat','Talat Phlu','Pho nimit','Wongwian Yai','Krung Thon Buri,'\
+                     'Saphan Taksin','Surasak','Chong Nonsi','Sala Daeng','Ratchadamri','Siam','National Stadium']
+    train_k = ['Bearing','Bang Na','Udom Suk','Punnawithi','Bang Chak','On nut','Phra Khanong','Ekkamai','Thong Lo','Phrom Phong',\
+               'Sukhumvit','Nana','Pholen Chit','Chitlom','Siam','Ratchathewi','Phaya Thai','Victory Monument','Sanam Pao','Ari','Saphan Khwai','Mo chit']
+    name = raw_input()
+    stop = raw_input()
+    if (name and stop not in train_s) or (name and stop not in train_k) :
+        if name in train_s:
+            money = abs(train_s.index(name) - train_s.index('Siam'))
+            money += abs(train_k.index('Siam') - train_k.index(stop))
+        else:
+            money = abs(train_k.index(name) - train_k.index('Siam'))
+            money += abs(train_s.index('Siam') - train_s.index(stop))
+start()

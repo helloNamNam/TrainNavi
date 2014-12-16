@@ -181,9 +181,9 @@ class Station_mrt(object):
                                          ).place(x=150, y=228)
         self.station_one.set(self.station_list[0])
         self.station_two.set(self.station_list[0])
-        label_text1 = Label(self.root, text = "Select station to start", bg = "white"
+        label_text1 = Label(self.root, text = "Select station to start", bg = "#d9fdf9"
                             ).place(x=10, y=188)
-        label_text2 = Label(self.root, text = "Select station end", bg = "white"
+        label_text2 = Label(self.root, text = "Select station end", bg = "#d9fdf9"
                             ).place(x=15, y=228)
 
         #__Entry Box__#
@@ -241,9 +241,9 @@ class Station_arl(object):
                                          ).place(x=350, y=48)
         self.station_one.set(self.station_list[0])
         self.station_two.set(self.station_list[0])
-        label_text1 = Label(self.root, text = "Select station to start", bg = "white"
+        label_text1 = Label(self.root, text = "Select station to start", bg = "#dafefa"
                             ).place(x=200, y=10)
-        label_text2 = Label(self.root, text = "Select station end", bg = "white"
+        label_text2 = Label(self.root, text = "Select station end", bg = "#dafefa"
                             ).place(x=220, y=50)
 
         #__Entry Box__#

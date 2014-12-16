@@ -156,12 +156,12 @@ class Station_bts(object):
         Main()
 
 class Station_mrt(object):
-    """ BTS class to select station """
+    """ MRT class to select station """
     def __init__(self):
         """ main method """
         self.root = Tk()
         self.root.geometry("800x600+400+100")
-        self.root.title("BTS Stations")
+        self.root.title("MRT Stations")
 
         #__Background__#
         photo = ImageTk.PhotoImage(Image.open("Image/Mrt.jpg"))
@@ -218,12 +218,12 @@ class Station_mrt(object):
         Main()
 
 class Station_arl(object):
-    """ BTS class to select station """
+    """ arl class to select station """
     def __init__(self):
         """ main method """
         self.root = Tk()
         self.root.geometry("800x600+400+100")
-        self.root.title("BTS Stations")
+        self.root.title("arl Stations")
 
         #__Background__#
         photo = ImageTk.PhotoImage(Image.open("Image/Air.jpg"))

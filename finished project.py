@@ -9,7 +9,7 @@ class Interface(object):
         self.root.title("Train Navigator")
 
         #__Background__#
-        photo = ImageTk.PhotoImage(Image.open("Image/Train.jpg"))
+        photo = ImageTk.PhotoImage(Image.open("Train.jpg"))
         bg_inter = Label(self.root, image = photo)
         bg_inter.place(x=0, y=0)
 
@@ -33,13 +33,13 @@ class Main(object):
         self.root.title("Main")
 
         #__Background and Image__#
-        photo = ImageTk.PhotoImage(Image.open("Image/menu.jpg"))
-        bts_photo = ImageTk.PhotoImage(Image.open("Train/bts train.jpg"))
-        mrt_photo = ImageTk.PhotoImage(Image.open("Train/mrt train.jpg"))
-        arl_photo = ImageTk.PhotoImage(Image.open("Train/air train.jpg"))
-        bts_but_p = ImageTk.PhotoImage(Image.open("Image/bts b.jpg"))
-        mrt_but_p = ImageTk.PhotoImage(Image.open("Image/mrt b.jpg"))
-        arl_but_p = ImageTk.PhotoImage(Image.open("Image/air b.jpg"))
+        photo = ImageTk.PhotoImage(Image.open("menu.jpg"))
+        bts_photo = ImageTk.PhotoImage(Image.open("bts train.jpg"))
+        mrt_photo = ImageTk.PhotoImage(Image.open("mrt train.jpg"))
+        arl_photo = ImageTk.PhotoImage(Image.open("air train.jpg"))
+        bts_but_p = ImageTk.PhotoImage(Image.open("bts b.jpg"))
+        mrt_but_p = ImageTk.PhotoImage(Image.open("mrt b.jpg"))
+        arl_but_p = ImageTk.PhotoImage(Image.open("air b.jpg"))
         bg_main = Label(self.root, image = photo)
         bts_label = Label(self.root, image = bts_photo)
         mrt_label = Label(self.root, image = mrt_photo)
@@ -86,12 +86,15 @@ class Station_bts(object):
         self.root.title("BTS Stations")
 
         #__Background__#
-        photo = ImageTk.PhotoImage(Image.open("Image/BTS.jpg"))
+        photo = ImageTk.PhotoImage(Image.open("BTS.jpg"))
         bg_bts = Label(self.root, image = photo)
         bg_bts.place(x=0, y=0)
 
         #__Option Menu__#
-        self.station_list = ['Mo-Shit', 'Payathai']
+        self.station_list = ['Bang wa','Wutthakat','Talat Phlu','Pho nimit','Wongwian Yai','Krung Thon Buri',\
+                              'Saphan Taksin','Surasak','Chong Nonsi','Sala Daeng','Ratchadamri','Siam(Silom)','National Stadium', \
+                              '---Bearing---','Bang Na','Udom Suk','Punnawithi','Bang Chak','On nut','Phra Khanong','Ekkamai','Thong Lo','Phrom Phong',\
+                              'Asok','Nana','Phloan Chit','Chit Lom','Siam(Sukumvit)','Ratchathewi','Phaya Thai','Victory Monument','Sanam Pao','Ari','Saphan Khwai','Mo chit']
         self.station_one = StringVar()
         self.station_two = StringVar()
         self.option_sta_one = OptionMenu(self.root, self.station_one, *self.station_list
@@ -122,10 +125,26 @@ class Station_bts(object):
 
     def bts_money(self):
         """ calculate money """
-        bts = {0:0, 1:15}
-        first = self.station_list.index(self.station_one.get())
-        second = self.station_list.index(self.station_two.get())
-        distance = abs(first - second)
+        train_s = ['Bang wa','Wutthakat','Talat Phlu','Pho nimit','Wongwian Yai','Krung Thon Buri',\
+                   'Saphan Taksin','Surasak','Chong Nonsi','Sala Daeng','Ratchadamri','Siam(Silom)','National Stadium']
+        train_k = ['---Bearing---','Bang Na','Udom Suk','Punnawithi','Bang Chak','On nut','Phra Khanong','Ekkamai','Thong Lo','Phrom Phong',\
+                   'Asok','Nana','Phloan Chit','Chit Lom','Siam(Sukumvit)','Ratchathewi','Phaya Thai','Victory Monument','Sanam Pao','Ari','Saphan Khwai','Mo chit']
+        bts = {0:15, 1:15, 2:25, 3:28, 4:31, 5:34, 6:37, 7:42, 8:42, 9:42, 10:42, \
+               11:42, 12:42, 13:42, 14:42, 15:42, 16:42, 17:52}
+        start = self.station_one.get()
+        stop = self.station_two.get()
+        if (start in train_s and stop not in train_s) or (start in train_k and stop not in train_k) :
+            if start in train_s:
+                distance = abs(train_s.index(start) - train_s.index('Siam(Silom)'))
+                distance += abs(train_k.index('Siam(Sukumvit)') - train_k.index(stop))
+            else:
+                distance = abs(train_k.index(start) - train_k.index('Siam(Sukumvit)'))
+                distance += abs(train_s.index('Siam(Silom)') - train_s.index(stop))
+        else:
+            if start in train_s:
+                distance = abs(train_s.index(start) - train_s.index(stop))
+            else:
+                distance = abs(train_k.index(start) - train_k.index(stop))
         if distance >= 17:
             self.result_box.set(bts[17])
         else:
@@ -137,15 +156,15 @@ class Station_bts(object):
         Main()
 
 class Station_mrt(object):
-    """ BTS class to select station """
+    """ MRT class to select station """
     def __init__(self):
         """ main method """
         self.root = Tk()
         self.root.geometry("800x600+400+100")
-        self.root.title("BTS Stations")
+        self.root.title("MRT Stations")
 
         #__Background__#
-        photo = ImageTk.PhotoImage(Image.open("Image/Mrt.jpg"))
+        photo = ImageTk.PhotoImage(Image.open("Mrt.jpg"))
         bg_mrt = Label(self.root, image = photo)
         bg_mrt.place(x=0, y=0)
 
@@ -162,9 +181,9 @@ class Station_mrt(object):
                                          ).place(x=150, y=228)
         self.station_one.set(self.station_list[0])
         self.station_two.set(self.station_list[0])
-        label_text1 = Label(self.root, text = "Select station to start", bg = "white"
+        label_text1 = Label(self.root, text = "Select station to start", bg = "#d9fdf9"
                             ).place(x=10, y=188)
-        label_text2 = Label(self.root, text = "Select station end", bg = "white"
+        label_text2 = Label(self.root, text = "Select station end", bg = "#d9fdf9"
                             ).place(x=15, y=228)
 
         #__Entry Box__#
@@ -199,15 +218,15 @@ class Station_mrt(object):
         Main()
 
 class Station_arl(object):
-    """ BTS class to select station """
+    """ arl class to select station """
     def __init__(self):
         """ main method """
         self.root = Tk()
         self.root.geometry("800x600+400+100")
-        self.root.title("BTS Stations")
+        self.root.title("arl Stations")
 
         #__Background__#
-        photo = ImageTk.PhotoImage(Image.open("Image/Air.jpg"))
+        photo = ImageTk.PhotoImage(Image.open("Air.jpg"))
         bg_arl = Label(self.root, image = photo)
         bg_arl.place(x=0, y=0)
 
@@ -222,9 +241,9 @@ class Station_arl(object):
                                          ).place(x=350, y=48)
         self.station_one.set(self.station_list[0])
         self.station_two.set(self.station_list[0])
-        label_text1 = Label(self.root, text = "Select station to start", bg = "white"
+        label_text1 = Label(self.root, text = "Select station to start", bg = "#dafefa"
                             ).place(x=200, y=10)
-        label_text2 = Label(self.root, text = "Select station end", bg = "white"
+        label_text2 = Label(self.root, text = "Select station end", bg = "#dafefa"
                             ).place(x=220, y=50)
 
         #__Entry Box__#
